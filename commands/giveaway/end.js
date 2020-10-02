@@ -1,7 +1,7 @@
 const ms = require('ms');
 
 module.exports = {
-	name: 'end',
+	name: 'sorteio',
 	run: async (client, message, args) => {
 		// If the member doesn't have enough permissions
 		if (
@@ -9,14 +9,14 @@ module.exports = {
 			!message.member.roles.cache.some(r => r.name === 'Giveaways')
 		) {
 			return message.channel.send(
-				':x: You need to have the manage messages permissions to reroll giveaways.'
+				':x: Você precisa ter permissões de gerenciamento de mensagens para rolar novamente os brindes.'
 			);
 		}
 
 		// If no message ID or giveaway name is specified
 		if (!args[0]) {
 			return message.channel.send(
-				':x: You have to specify a valid message ID!'
+				':x: Você tem que especificar um ID de mensagem válido!'
 			);
 		}
 
@@ -33,7 +33,7 @@ module.exports = {
 		// If no giveaway was found
 		if (!giveaway) {
 			return message.channel.send(
-				'Unable to find a giveaway for `' + args.join(' ') + '`.'
+				'Incapaz de encontrar uma oferta para `' + args.join(' ') + '`.'
 			);
 		}
 
@@ -46,21 +46,21 @@ module.exports = {
 			.then(() => {
 				// Success message
 				message.channel.send(
-					'Giveaway will end in less than ' +
+					'A oferta terminará em menos de ' +
 						client.giveawaysManager.options.updateCountdownEvery / 1000 +
-						' seconds...'
+						' segundos...'
 				);
 			})
 			.catch(e => {
 				if (
 					e.startsWith(
-						`Giveaway with message ID ${giveaway.messageID} is already ended.`
+						`Giveaway with message ID ${giveaway.messageID} já terminou.`
 					)
 				) {
-					message.channel.send('This giveaway is already ended!');
+					message.channel.send('Este sorteio já acabou!');
 				} else {
 					console.error(e);
-					message.channel.send('An error occured...');
+					message.channel.send('Um erro ocorreu...');
 				}
 			});
 	}

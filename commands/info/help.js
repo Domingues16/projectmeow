@@ -5,6 +5,7 @@ module.exports = {
 	name: 'help',
 	aliases: ['ajuda', 'comandos'],
 	run: async (client, message, args) => {
+		message.react('751850184471871609');
 		let botprefix = db.get(`prefix_${message.guild.id}`);
 		if (botprefix === null) prefix = default_prefix;
 		let ajuda = new discord.MessageEmbed()

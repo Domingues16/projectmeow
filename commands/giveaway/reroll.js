@@ -1,7 +1,7 @@
 const ms = require('ms');
 
 module.exports = {
-	name: 'reroll',
+	name: 'sorteio',
 	run: async (client, message, args) => {
 		// If the member doesn't have enough permissions
 		if (

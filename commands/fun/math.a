@@ -1,6 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const math = require('mathjs');
-
+var numbers = require('math.js');
 module.exports = {
 	name: 'math',
 	aliases: 'calculadora',
@@ -12,7 +11,7 @@ module.exports = {
 			const embed = new MessageEmbed()
 				.setColor('RANDOM')
 				.setTitle(`Resultado:`)
-				.setDescription(math.evaluate(args.join(' ')))
+				.setDescription(non(args.join(' ')))
 				.setTimestamp();
 
 			message.channel.send(embed);

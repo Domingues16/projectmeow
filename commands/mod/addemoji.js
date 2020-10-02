@@ -1,21 +1,17 @@
 const Discord = require('discord.js');
 const { parse } = require('twemoji-parser');
-const { MessageEmbed } = require('discord.js');
-const Color = `RANDOM`;
 
 module.exports = {
-	name: 'stealemoji',
-	aliases: ['addemoji'],
-	category: 'Administrators',
+	name: 'addemoji',
 	run: async (client, message, args) => {
 		if (!message.member.hasPermission(`MANAGE_EMOJIS`)) {
 			return message.channel.send(
-				`You Don't Have Permission To Use This Command! Manage Emojis`
+				`Você não tem permissão para usar este comando! Gerenciar Emojis`
 			);
 		}
 
 		const emoji = args[0];
-		if (!emoji) return message.channel.send(`Please Give Me A Emoji!`);
+		if (!emoji) return message.channel.send(`Por favor, dê-me um emoji!`);
 
 		let customemoji = Discord.Util.parseEmoji(emoji);
 
@@ -28,20 +24,19 @@ module.exports = {
 				`${Link}`,
 				`${name || `${customemoji.name}`}`
 			);
-			const Added = new MessageEmbed()
-				.setTitle(`Emoji Added`)
-				.setColor(`${Color}`)
+			const Added = new Discord.MessageEmbed()
+				.setTitle(`Emoji adicionado.`)
+				.setColor('RANDOM')
 				.setDescription(
-					`Emoji Has Been Added! | Name : ${name ||
-						`${customemoji.name}`} | Preview : [Click Me](${Link})`
+					`Emoji adicionado! | Nome: ${name ||
+						`${customemoji.name}`} | Visualização: [Clique aqui](${Link}).`
 				);
 			return message.channel.send(Added);
 		} else {
 			let CheckEmoji = parse(emoji, { assetType: 'png' });
-			if (!CheckEmoji[0])
-				return message.channel.send(`Please Give Me A Valid Emoji!`);
+			if (!CheckEmoji[0]) return message.channel.send(`Dê-me um Emoji válido!`);
 			message.channel.send(
-				`You Can Use Normal Emoji Without Adding In Server!`
+				`Você pode usar o emoji normal sem adicionar no servidor!`
 			);
 		}
 	}
