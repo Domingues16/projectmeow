@@ -23,7 +23,6 @@ module.exports = {
 					});
 				});
 			});
-
 			const infosFilter = (reaction, user) =>
 				reaction.emoji.name === '💡' && user.id === message.author.id;
 			const admFilter = (reaction, user) =>
