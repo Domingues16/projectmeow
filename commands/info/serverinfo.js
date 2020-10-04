@@ -49,14 +49,19 @@ module.exports = {
 			.setColor('RANDOM')
 			.setTimestamp(new Date())
 			.setThumbnail(icon)
-			.setAuthor(message.guild.name).setDescription(`🆔️ | ID: (${
-			message.guild.id
-		}).\n🌐 | Região: ${location}.\n🗓 | Data de criação: ${created}.\n👑 | Dono: ${
-			message.guild.owner.user.tag
-		} (${
-			message.guild.owner.user.id
-		}).\n👥 | Membros no total: ${total}.\n🔵 | Online: ${online}.\n⚪ | Ausentes: ${idle}. \n🔴 | Não pertube: ${dnd}.\n⚫ | Invisível: ${offline}.\n🤖 | Chatbots: ${robot}.\n📺 | Canais no total: ${totalchan}.\n💬 | Canais de texto: ${text}.\n🎙 | Canais de voz: ${vc}.\n🗂 | Categorias: ${category}.`);
+			.setAuthor(message.guild.name)
+			.setDescription(
+				`🆔️ | ID: (${
+					message.guild.id
+				}).\n🌐 | Região: ${location}.\n🗓 | Data de criação: ${created}.\n👑 | Dono: ${
+					message.guild.owner.user.tag
+				} (${
+					message.guild.owner.user.id
+				}).\n👥 | Membros no total: ${total}.\n🔵 | Online: ${online}.\n⚪ | Ausentes: ${idle}. \n🔴 | Não pertube: ${dnd}.\n⚫ | Invisível: ${offline}.\n🤖 | Chatbots: ${robot}.\n📺 | Canais no total: ${totalchan}.\n💬 | Canais de texto: ${text}.\n🎙 | Canais de voz: ${vc}.\n🗂 | Categorias: ${category}.`
+			);
 
-		message.channel.send(embed);
+		message.channel.send(embed).then(msg => {
+			msg.delete({ timeout: 10000 });
+		});
 	}
 };

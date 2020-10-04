@@ -8,5 +8,7 @@ module.exports = (client, guilda) => {
 				guilda.owner.user.tag
 			} (${guilda.owner.user.id}) com ${guilda && guilda.memberCount} membros.`
 		);
-	canal.send(embedaddguilda);
+	canal.send(embedaddguilda).then(msg => {
+		msg.react('762044073648717824');
+	});
 };

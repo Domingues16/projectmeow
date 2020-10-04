@@ -3,48 +3,60 @@ const ms = require('ms');
 module.exports = {
 	name: 'sorteio',
 	run: async (client, message, args) => {
-		// If the member doesn't have enough permissions
+		message.react('761605475233431594');
 		if (
 			!message.member.hasPermission('MANAGE_MESSAGES') &&
 			!message.member.roles.cache.some(r => r.name === 'Giveaways')
 		) {
-			return message.channel.send(
-				':x: Você precisa ter permissão para gerenciar mensagens para iniciar brindes.'
-			);
+			return message.channel
+				.send(
+					':x: Você precisa ter permissão para gerenciar mensagens para iniciar brindes.'
+				)
+				.then(msg => {
+					msg.delete({ timeout: 5000 });
+				});
 		}
 		let giveawayChannel = message.mentions.channels.first();
 		// If no channel is mentionned
 		if (!giveawayChannel) {
-			return message.channel.send(
-				':x: Você tem que mencionar um canal válido!'
-			);
+			return message.channel
+				.send(':x: Você tem que mencionar um canal válido!')
+				.then(msg => {
+					msg.delete({ timeout: 5000 });
+				});
 		}
 
 		// Giveaway duration
 		let giveawayDuration = args[1];
 		// If the duration isn't valid
 		if (!giveawayDuration || isNaN(ms(giveawayDuration))) {
-			return message.channel.send(
-				':x: Você tem que especificar uma duração válida!'
-			);
+			return message.channel
+				.send(':x: Você tem que especificar uma duração válida!')
+				.then(msg => {
+					msg.delete({ timeout: 5000 });
+				});
 		}
 
 		// Number of winners
 		let giveawayNumberWinners = args[2];
 		// If the specified number of winners is not a number
 		if (isNaN(giveawayNumberWinners) || parseInt(giveawayNumberWinners) <= 0) {
-			return message.channel.send(
-				':x: Você deve especificar um número válido de vencedores!'
-			);
+			return message.channel
+				.send(':x: Você deve especificar um número válido de vencedores!')
+				.then(msg => {
+					msg.delete({ timeout: 5000 });
+				});
 		}
 
 		// Giveaway prize
 		let giveawayPrize = args.slice(3).join(' ');
 		// If no prize is specified
 		if (!giveawayPrize) {
-			return message.channel.send(
-				':x: Você tem que especificar um prêmio válido!'
-			);
+			return message.channel
+				.send(':x: Você tem que especificar um prêmio válido!')
+				.then(msg => {
+					msg.delete({ timeout: 5000 });
+				});
 		}
 
 		// Start the giveaway
@@ -84,6 +96,10 @@ module.exports = {
 			}
 		});
 
-		message.channel.send(`Giveaway iniciado em ${giveawayChannel}!`);
+		message.channel
+			.send(`Giveaway iniciado em ${giveawayChannel}!`)
+			.then(msg => {
+				msg.delete({ timeout: 5000 });
+			});
 	}
 };

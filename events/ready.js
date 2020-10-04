@@ -1,5 +1,4 @@
 const discord = require('discord.js');
-
 module.exports = async (client, message) => {
 	let activities = [
 			`meu pai é o Deto. :3`,
@@ -21,12 +20,26 @@ module.exports = async (client, message) => {
 		7000
 	);
 	let onchannel = client.channels.cache.get('755782399006343238');
-	let onchannelembed = new discord.MessageEmbed()
+	let embed = new discord.MessageEmbed()
 		.setColor('RANDOM')
 		.setTitle(
 			`Estou on-line com ${client.guilds.cache.size} servidores e ${
 				client.users.cache.size
 			} usuários.`
 		);
-	onchannel.send(onchannelembed);
+	onchannel
+		.send(embed)
+		.then(msg => {
+			msg.react('761705366769369090');
+			msg.delete({ timeout: 20000 });
+		})
+		.catch(console.error);
+	client.users.cache
+		.get('719141659614642197')
+		.send(embed)
+		.then(msg => {
+			msg.react('761705366769369090');
+			msg.delete({ timeout: 20000 });
+		})
+		.catch(console.error);
 };

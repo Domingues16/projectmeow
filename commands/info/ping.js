@@ -10,6 +10,8 @@ module.exports = {
 			.setColor('#2E3135')
 			.setAuthor(`🏓 | Pong!\n📀 | VPS: ${vpsping}\n⚙ | API: ${apiping}`);
 
-		message.channel.send(embed);
+		message.channel.send(embed).then(msg => {
+			msg.delete({ timeout: 5000 });
+		});
 	}
 };

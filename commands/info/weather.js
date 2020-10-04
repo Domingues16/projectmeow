@@ -37,13 +37,16 @@ module.exports = {
 					)
 					.addField('Observação do vento:', result[0].current.winddisplay, true)
 					.setThumbnail(result[0].current.imageUrl);
-				message.channel.send(embed);
+				message.channel.send(embed).then(msg => {
+					msg.delete({ timeout: 10000 });
+				});
 			} catch (err) {
-				return message.channel.send(
-					'Incapaz de obter os dados de determinada localização.'
-				);
+				return message.channel
+					.send('Incapaz de obter os dados de determinada localização.')
+					.then(msg => {
+						msg.delete({ timeout: 5000 });
+					});
 			}
 		});
-		//LETS CHECK OUT PKG
 	}
 };

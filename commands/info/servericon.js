@@ -7,6 +7,10 @@ module.exports = {
 			message.guild.iconURL({ dynamic: 'gif', format: 'png', size: 1024 })
 		);
 
-		message.channel.send(`Ícone do servidor ${message.guild}:`, attachment);
+		message.channel
+			.send(`Ícone do servidor ${message.guild}:`, attachment)
+			.then(msg => {
+				msg.delete({ timeout: 20000 });
+			});
 	}
 };

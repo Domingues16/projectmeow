@@ -18,6 +18,8 @@ module.exports = {
 				member.displayAvatarURL({ dynamic: 'gif', format: 'png', size: 1024 })
 			);
 
-		message.channel.send(embed);
+		message.channel.send(embed).then(msg => {
+			msg.delete({ timeout: 10000 });
+		});
 	}
 };

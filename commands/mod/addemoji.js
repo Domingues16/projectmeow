@@ -28,8 +28,8 @@ module.exports = {
 				.setTitle(`Emoji adicionado.`)
 				.setColor('RANDOM')
 				.setDescription(
-					`Emoji adicionado! | Nome: ${name ||
-						`${customemoji.name}`} | Visualização: [Clique aqui](${Link}).`
+					`Nome: ${name ||
+						`${customemoji.name}`}\nVisualização: [Clique aqui](${Link}).`
 				);
 			return message.channel.send(Added);
 		} else {

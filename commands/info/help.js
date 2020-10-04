@@ -71,6 +71,7 @@ module.exports = {
 					msg.edit(ajuda);
 				});
 			});
+			msg.delete({ timeout: 60000 });
 		});
 	}
 };

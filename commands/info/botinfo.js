@@ -45,6 +45,8 @@ module.exports = {
 					client.channels.cache.size
 				}.\n⏱ | Tempo ativo: ${uptime}. \n🛰 | Latência da VPS: ${vpsping}\n📡 | Latência da API: ${apiping}`
 			);
-		message.channel.send(embed);
+		message.channel.send(embed).then(msg => {
+			msg.delete({ timeout: 10000 });
+		});
 	}
 };

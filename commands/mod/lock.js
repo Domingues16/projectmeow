@@ -13,7 +13,7 @@ module.exports = {
   SEND_MESSAGES: false
 })
     
-    return message.channel.send('Canal bloqueado com sucesso!!' + `\n` + 'Use s!unlock para desbloquear')
+    return message.channel.send('Canal bloqueado com sucesso.')
     
   }
 }

@@ -17,7 +17,10 @@ module.exports = (client, message) => {
 		);
 	let mention = [`<@${client.user.id}>`, `<@!${client.user.id}>`];
 	mention.find(mention => {
-		if (message.content === mention) message.channel.send(opan);
+		if (message.content === mention)
+			message.channel.send(opan).then(msg => {
+				msg.delete({ timeout: 10000 });
+			});
 	});
 
 	if (!message.content.startsWith(prefix)) return;
@@ -65,5 +68,28 @@ module.exports = (client, message) => {
 	} catch (error) {
 		console.error(error);
 		message.reply('erro ao executar esse comando.');
+	}
+	client.on('ready', () => {
+		setTimeout(function() {
+			// in leftToEight() milliseconds run this:
+			sendMessage(); // send the message once
+			var dayMillseconds = 1000 * 60 * 60 * 24;
+			setInterval(function() {
+				// repeat this every 24 hours
+				sendMessage();
+			}, dayMillseconds);
+		}, leftToEight());
+	});
+
+	function leftToEight() {
+		var d = new Date();
+		return -d + d.setHours(8, 0, 0, 0);
+	}
+
+	function sendMessage() {
+		var guild = client.guilds.get('755571193775390730');
+		if (guild && guild.channels.get('755571194304135200')) {
+			guild.channels.get('755571194304135200').send('Bom dia @everyone!');
+		}
 	}
 };
